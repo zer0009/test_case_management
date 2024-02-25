@@ -29,8 +29,6 @@ class TestCase(Resource):
         user_id = get_jwt_identity()
         test_case = TestCaseModel.find_by_id(test_case_id)
         claims = get_jwt()
-        print(user_id)
-        print(test_case.user_id)
         if test_case:
             if (user_id == test_case.user_id) or claims["is_admin"]:
                 return test_case_schema.dump(test_case), 200
