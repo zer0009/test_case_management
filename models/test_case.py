@@ -5,13 +5,6 @@ from typing import List
 from models.execution_result import ExecutionResultModel
 
 
-class TestAssetModel(db.Model):
-    __tablename__ = "test_asset"
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-
-
 class TestCaseModel(db.Model):
     __tablename__ = "test_cases"
 
@@ -27,18 +20,9 @@ class TestCaseModel(db.Model):
     def find_by_id(cls, _id: int) -> "TestCaseModel":
         return cls.query.filter_by(id=_id).first()
 
-    # return List
-    @classmethod
-    def find_state_by_id(cls, state_id: int):
-        return cls.query.filter_by(state_id=state_id).first()
-
     @classmethod
     def find_user_by_id(cls, user_id: int):
         return cls.query.filter_by(user_id=user_id).first()
-
-    @classmethod
-    def find_user_by_id_all(cls, user_id: int):
-        return cls.query.filter_by(user_id=user_id).all()
 
     # return List
     @classmethod

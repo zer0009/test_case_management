@@ -9,8 +9,10 @@ import os
 from ma import ma
 from models.user import UserModel
 from resources.execution_result import ExecutionResult, NewExecutionResult
+from resources.test_asset import NewTestAsset
 from resources.test_case import NewTestCase, TestCase, TestCaseList
 from resources.user import UserRegister, UserLogin, TokenRefresh, UserLogout, Admin, User, UserList
+
 
 app = Flask(__name__)
 load_dotenv(".env", verbose=True)
@@ -61,6 +63,7 @@ api.add_resource(ExecutionResult, "/execution_results/<int:test_asset_id>")
 api.add_resource(NewTestCase, "/new_testcases")
 api.add_resource(TestCase, "/testcase/<int:test_case_id>")
 api.add_resource(TestCaseList, "/testcases")
+api.add_resource(NewTestAsset, "/new_testasset")
 
 with app.app_context():
     db.create_all()

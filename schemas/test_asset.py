@@ -1,11 +1,10 @@
-from models.test_case import TestCaseModel
 from ma import ma
-from models import *
+from models.test_asset import TestAssetModel
 
 
-class TestCaseSchema(ma.SQLAlchemyAutoSchema):
+class TestAssetSchema(ma.SQLAlchemyAutoSchema):
     class Meta:
-        model = TestCaseModel
+        model = TestAssetModel
         dump_only = ("id",)
         load_instance = True
         include_relationships = True
