@@ -3,7 +3,6 @@ from typing import List
 from models.test_asset import TestAssetModel  # Ensure correct import path
 
 
-
 class ExecutionResultModel(db.Model):
     __tablename__ = "execution_results"
 
@@ -20,7 +19,6 @@ class ExecutionResultModel(db.Model):
     @classmethod
     def find_by_id(cls, _id: int) -> "ExecutionResultModel":
         return cls.query.filter_by(id=_id).first()
-
 
     # return List
     @classmethod

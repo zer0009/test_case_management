@@ -63,8 +63,7 @@ class User(Resource):
 class UserLogin(Resource):
     @classmethod
     def post(cls):
-        """This endpoint is used for login the user, the user must enter username and password correctly
-        and be activated and he must be confirmed his email."""
+        """This endpoint is used for login the user, the user must enter username and password correctly."""
         user_json = request.get_json()
         user_data = user_schema.load(
             user_json, partial=("name",)

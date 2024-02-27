@@ -1,3 +1,4 @@
+import json
 from unittest import TestCase
 from app import app
 from db import db
@@ -13,12 +14,12 @@ class BaseTest(TestCase):
             db.create_all()
 
             # Create test user for authentication
-            user = UserModel(username='p7', password='123456')
+            user = UserModel(username='test_user', password='123456')
             user.save_to_db()
 
         # Authenticate the test user
         response = self.app.post('/login', json={
-            'username': 'p7',
+            'username': 'test_user',
             'password': '123456'
         })
         self.token = response.json['access_token']
@@ -27,3 +28,10 @@ class BaseTest(TestCase):
         with app.app_context():
             db.session.remove()
             db.drop_all()
+
+    def get_auth_token(self, username, password):
+        # Simulate generating JWT token for authentication
+        response = self.app.post('/login', json={'username': username, 'password': password})
+        auth_token = json.loads(response.data)['access_token']
+        user_id = json.loads(response.data)['user_id']
+        return auth_token, user_id
